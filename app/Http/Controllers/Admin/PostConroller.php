@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Post;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Str;
 class PostConroller extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
