@@ -14,11 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 // Una nuova rotta al post
-Route::get('/posts', 'PostController@index')->name('post');
+Route::get('/posts', 'PostController@index')->name('posts.index');
+
+// Laravel Authentication
+Route::prefix('admin')
+      ->namespace('Admin')
+      ->middleware('auth')
+      ->group(function () {
+          Route::get('/home', 'HomeController@index')
+          ->name('home');
+          Route::resource('posts','PostController');
+      });
