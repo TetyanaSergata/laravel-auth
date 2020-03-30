@@ -20,3 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+// Una nuova rotta al post
+Route::get('/posts', 'PostController@index')->name('post');
