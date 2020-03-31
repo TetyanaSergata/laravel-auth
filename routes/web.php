@@ -26,7 +26,8 @@ Route::get('/posts', 'PostController@index')->name('posts.index');
 Route::get('/posts{slug}', 'PostController@show')->name('posts.show');
 
 // Laravel Authentication
-Route::prefix('admin')
+Route::name('admin.')
+      ->prefix('admin')
       ->namespace('Admin')
       ->middleware('auth')
       ->group(function () {
