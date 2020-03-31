@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 class PostsTableSeeder extends Seeder
