@@ -30,7 +30,13 @@ class PostController extends Controller
      */
     public function create()
     {
+      $post = Post::all();
+      $data = [
+        // il primo dato
+          'post' => $post
+        ];
 
+        return view('admin.posts.create', $data);
     }
 
     /**
@@ -41,7 +47,26 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+      // Controlliamo tramite Id se l'utente è autorizzato
+      $userAuth = Auth::user()->id;
+      $data = $request->all();
 
+      // Nuova Istanza
+      $newPost = new Post;
+      // Il user_id deve essere uguale a quello autenticato dal controllo
+      $newPost->user_id = $userAuth;
+      $newPost->title = $data['title'];
+      $newPost->body = $data['body'];
+      $newPost->slug = Str::finish(Str::slug($newPost->title), rand(1, 1000000));
+      $saved = $newPost->save();
+
+      // Se il saved non ci è stato allora torna indietro di un passo, sulla rotta dove stavi appena prima
+      if(!$saved) {
+            return redirect()->back();
+        }
+
+        // Torniamo sulla show
+        return redirect()->route('admin.posts.show', $newPost->slug);
     }
 
     /**
