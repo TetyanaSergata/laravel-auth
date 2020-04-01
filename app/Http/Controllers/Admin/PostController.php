@@ -30,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -41,7 +41,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -63,9 +63,25 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    // public function edit($slug)
+    // {
+    //   $post = Post::where('slug', $slug)->get();
+    //
+    //   $data = [
+    //     // il primo dato
+    //     'post' => $post
+    //   ];
+    //
+    //   return view('admin.posts.edit', $data);
+    // }
+
+    public function edit(Post $post)
     {
-        //
+      if (empty($post)) {
+        abort('404');
+      }
+
+      return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -86,8 +102,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        if (empty($post)) {
+          abort('404');
+        }
+      $post->delete();
+
+      return redirect()->route('admin.posts.index');
     }
 }
