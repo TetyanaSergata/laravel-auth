@@ -4,17 +4,17 @@
 @extends('layouts.app')
 @section('content')
   <div class="container border">
-    <div class="">
-      <a class="btn btn-info" href="#">Crea un nuovo post</a>
-    </div>
+    <button type="button" name="button">
+      <a class="btn btn-info" href="{{route('admin.posts.create')}}">Crea un nuovo post</a>
+    </button>
     <table class="table">
       <thead class="thead-dark">
         <tr>
           <th>ID</th>
-          <th>User ID</th>
-          <th>Title</th>
-          <th>Created at</th>
-          <th>Updated at</th>
+          <th>USER ID</th>
+          <th>TITLE</th>
+          <th>CREATED AT</th>
+          <th>UPDATED AT</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -28,14 +28,23 @@
             <td>{{$post->updated_at}}</td>
             <td>
               <a class="btn btn-primary"
-
-               href="{{route('admin.posts.show', $post->slug)}}"
-                >
-                View
+              href="{{route('admin.posts.show', $post->slug)}}"
+                >View
               </a>
             </td>
-            <td class="btn btn-primary">Edit</td>
-            <td class="btn btn-danger" type="submit">Delete</td>
+            <td>
+              <a class="btn btn-success"
+              href="{{route('admin.posts.edit', $post->slug)}}">
+                Edit
+              </a>
+            </td>
+            <td>
+              <form action="{{route('admin.posts.destroy', $post->slug)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit" name="button">Delete</button>
+              </form>
+            </td>
           </tr>
         @endforeach
       </tbody>
