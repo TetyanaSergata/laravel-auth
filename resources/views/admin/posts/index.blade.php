@@ -4,9 +4,12 @@
 @extends('layouts.app')
 @section('content')
   <div class="container border">
-    <button type="button" name="button">
-      <a class="btn btn-info" href="{{route('admin.posts.create')}}">Crea un nuovo post</a>
-    </button>
+    <div class="">
+      <button type="button" name="button">
+        <a class="btn btn-info" href="{{route('admin.posts.create')}}">Crea un nuovo post</a>
+      </button>
+
+    </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>

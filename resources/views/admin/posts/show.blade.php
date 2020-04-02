@@ -20,6 +20,12 @@
           <td>{{$post->title}}</td>
           <td>{{$post->created_at}}</td>
           <td>{{$post->updated_at}}</td>
+          <td>
+            <button class="btn btn-info" type="submit" name="button">
+              <a href="{{route('admin.posts.index')}}">Torna ai risultati</a>
+
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

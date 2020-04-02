@@ -17,4 +17,11 @@ class Post extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    // Creiamo le relazioni
+    // (Tanti post - Tanti tag : Many To Many)
+    public function tags()
+    {
+      return $this->belongsToMany('App\Tag');
+    }
 }
